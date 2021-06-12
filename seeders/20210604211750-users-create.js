@@ -1,8 +1,6 @@
 'use strict';
 const faker = require('faker');
- const rol= [
-  'admin', 'author', ' guest'
-];
+
 const users = [...Array(20)].map((user) => (
   {
     userName: faker.internet.userName(),
