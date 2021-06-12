@@ -5,7 +5,6 @@ const faker = require('faker');
 ];
 const users = [...Array(20)].map((user) => (
   {
-
     userName: faker.internet.userName(),
     email: faker.internet.email(),
     password: faker.internet.password(8),
