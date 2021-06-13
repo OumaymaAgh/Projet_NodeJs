@@ -13,11 +13,21 @@ fetch(url).then((response)=> {
           <td>${user.email}</td>
           <td>${user.password}</td>
           <td>${user.role}</td>
-          <td>Date de modification</td>
+          <td>${user.createdAt}</td>
+          <td>${user.updatedAt}</td>
+          <td><input type="image" id=${user.id} width="30" height="30"   src="images/modifier.jpg" ></td>
+          <td><input type="image" id=${user.id} width="30" height="30"  src="images/supprimer.jpg" ></td>
+          
         </tr>`
     html+=tr;
     });
     table.innerHTML = html ;
 });
+function supprimer(id){
+    console.log(id);
+  }
+  function modifier(user){
+    console.log('modifier');
+  }
 
 
