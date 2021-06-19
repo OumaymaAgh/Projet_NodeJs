@@ -4,9 +4,11 @@ const usersRepo = require('../respositories/users')
  router.get('/', async function(req, res, next) {
    res.json(await usersRepo.getAllUsers())
  });
- router.delete('/:id', async function(req, res, next) {
+
+ 
+ /*router.delete('/:id', async function(req, res, next) {
   res.json(await usersRepo.deleteUser(req.params.id))
-});
+});*/
 
  
  module.exports = router;
