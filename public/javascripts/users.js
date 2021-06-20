@@ -38,9 +38,9 @@ function showPrevPaginatedUsers(){
 
 const createRow = (id,username,email,password,role) =>{
     return $("<tr/>").append(`<td>${id}</td><td>${username}</td><td>${email}</td><td>${role}</td>`)
-                            .append($("<td/>").append($("<button/>").addClass("btn btn-outline-success").append($("<span/>").addClass("fa fa-pencil"))
+                            .append($("<td/>").append($("<button/>").addClass("btn btn-success").append($("<span/>").addClass("fa fa-pencil"))
                             .click(()=>{intiEdit(id,username,email,password,role)}))
-                            .append($("<button/>").addClass("btn btn-outline-danger").append($("<span/>").addClass("fa fa-trash")).click(()=>{
+                            .append($("<button/>").addClass("btn btn-danger").append($("<span/>").addClass("fa fa-trash")).click(()=>{
                                 deleteUser(id)
                             })))
 }
@@ -65,7 +65,7 @@ function updateButtons(){
     .then(handleErrors)
     .then(() => {
             showPaginatedUsers()
-            showMsg(`l'utiliateur aved id  ${id} est supprimer par succer`,"succer")
+            showMsg(`l'utilisateur avec id  ${id} est supprimer par succer`,"success")
     })
 
 }
@@ -92,7 +92,7 @@ const formData = () =>{
                     .then(() => {
                             refreshForm()
                             showPaginatedUsers()
-                            showMsg(`l'utilisateur avec id  ${id} est modifier par succer`,"succer")
+                            showMsg(`l'utilisateur avec id  ${id} est modifier par succer`,"success")
                     })
 }
   function addUser(event){
@@ -108,7 +108,7 @@ const formData = () =>{
                     .then(() => {
                             refreshForm()
                             showPaginatedUsers()
-                            showMsg(`l'utilisateur est ajouter au tableau `,"succer")
+                            showMsg(`l'utilisateur est ajouter au tableau `,"success")
                     })
 }
 function intiEdit(id,username,email,password,role){
