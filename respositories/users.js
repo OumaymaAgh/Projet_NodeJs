@@ -1,64 +1,78 @@
 const { User } = require('../models')
-
+const {Article} = require('../models')
 module.exports = {
-  getAllUsers() {
-    return User.findAll()
-  },
-  // méthodes à implémenter
-  getUsers(offset = 0, limit = 10) { 
-      return user.findAll(offset,limit) ; 
-  },
-  getAdmins() {
-    return user.findAll({
-      where:{
-        role :"admin"
-      }
-    });
-   },
-  getAuthors() { 
-    return user.findAll({
-      where:{
-        role :"author"
-      }
-    });
-  },
-  getGuests(){
-    return user.findAll({
-      where:{
-        role :"guest"
-      }
-    });
-   }, 
-  getUser(id) { 
-    return user.findAll({
-      where:{
-        id :id
-      }
-    });
-  },
-  getUserByEmail(email) {
-    return user.findAll({
-      where:{
-        email : email
-      }
-    });
-   },
-  addUser(user) {
-    return user.create(user) ;
-   },
-  updateUser(id, updates) {
-    return User.update(updates, {
-      where: {
-        id: id,
-      },
-    });
-   },
-   deleteUser(id) {
-    return User.destroy({
-      where: {
-        id: id,
-      },
-    });
-  },
-  // D'autres méthodes jugées utiles
-}
+    async getAllUsers() {
+    return await User.findAll()
+    },
+    // méthodes à implémenter
+    async getUsers(offset = 0, limit = 10) { 
+        return await User.findAndCountAll({
+            limit: limit,
+            offset: offset,
+            order:[ ['createdAt', 'DESC'] ], // conditions
+          })
+    },
+    async getAdmins() { 
+        return await User.findAll({
+            where:{
+                role:"admin"
+            }
+        })
+    },
+    async getAuthors() { 
+        return await User.findAll({
+            where:{
+                role:"author"
+            }
+        })
+    },
+    async getGuests(){ 
+        return await User.findAll({
+            where:{
+                role:"guest"
+            }
+        })
+    },
+    async getUser(id) {
+        return await User.findOne({
+            where:{
+                id:id
+            }
+        })
+     },
+    async getUserByEmail(email) {
+        return await User.findOne({
+            where:{
+                email:email
+            }
+        })
+     },
+     async addUser(user) {
+        return await User.create(user)
+     },
+      updateUser(user) { 
+       return  User.update(
+            user,
+          {
+              where:{
+                  id:user.id
+              }
+          }
+        )
+    },
+     deleteUser(id) { 
+        return  User.destroy({
+            where:{
+                id:id
+            }
+          })
+    },
+     findUserArticles(id){
+        return  User.findOne({
+            where:{
+                id:id
+            },
+            include:Article
+        })
+    }
+    }
