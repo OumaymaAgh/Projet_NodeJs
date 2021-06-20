@@ -1,17 +1,5 @@
 'use strict';
-const faker = require("faker");
-/*const users = [...Array(20)].map((user) => (
-  {
-    userName: faker.internet.userName(),
-    email: faker.internet.email(),
-    password: faker.internet.password(8),
-    role: faker.random.arrayElement([
-      "admin", "author", "guest"
-    ]),
-    createdAt: faker.date.between(new Date("01-01-2000"), new Date("12-12-2020")),
-    updatedAt: new Date()
-  }
-));*/
+const faker = require('faker');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const usersData = [];
@@ -77,9 +65,11 @@ module.exports = {
             articleId++
             articleData.push(article)
          }
+
          usersData.push(user)
         }
 
+        
    
          await queryInterface.bulkInsert('Users', usersData);
          console.log("users inserted");
@@ -91,7 +81,7 @@ module.exports = {
          console.log("articlesTags inserted");
          await queryInterface.bulkInsert('Comments', commentData);
          console.log("Comments inserted");
-  },
+        },
 
   down: async (queryInterface, Sequelize) => {
     /**
